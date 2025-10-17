@@ -1,0 +1,42 @@
+class Solution {
+    // Function to find max occurring character
+    public char getMaxOccurringChar(String s) {
+        // Map to store frequency of characters
+        Map<Character, Integer> freq = new HashMap<>();
+
+        // Count frequency of each character
+        for (char c : s.toCharArray()) {
+            freq.put(c, freq.getOrDefault(c, 0) + 1);
+        }
+
+        // Variables to store result
+        int maxFreq = 0;
+        char maxChar = '\0';
+
+        // Traverse map to find max occurring char
+        for (Map.Entry<Character, Integer> entry : freq.entrySet()) {
+            if (entry.getValue() > maxFreq) {
+                maxFreq = entry.getValue();
+                maxChar = entry.getKey();
+            }
+        }
+
+        // Return result
+        return maxChar;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        // Input string
+        String s = "samplestring";
+
+        // Create object of Solution
+        Solution obj = new Solution();
+
+        // Call function
+        char ans = obj.getMaxOccurringChar(s);
+
+        // Print result
+        System.out.println("Max occurring character: " + ans);
+    }
+}
