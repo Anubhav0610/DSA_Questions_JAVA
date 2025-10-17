@@ -1,0 +1,19 @@
+int reverseExponentiation(int n) {
+    int reversed_n = reverseRecursive(n, 0);
+    int result = powerRecursive(n, reversed_n);
+    return (int)result;
+}
+int powerRecursive(int base, int exp) {
+    if (exp == 0) {
+        return 1;
+    }
+    return base * powerRecursive(base, exp - 1);
+}
+int reverseRecursive(int n, int reversed_n) {
+    if (n == 0) {
+        return reversed_n;
+    }
+    int digit = n % 10;
+    int new_reversed_n = reversed_n * 10 + digit;
+    return reverseRecursive(n / 10, new_reversed_n);
+}
