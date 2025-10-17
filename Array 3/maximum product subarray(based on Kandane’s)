@@ -1,0 +1,22 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        if(nums.length==1)
+        return nums[0];
+        int leftsum=1;
+        int rightsum=1;
+        int max=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            int x=nums.length-i-1;//LAST INDEX
+            leftsum*=nums[i];
+            rightsum*=nums[x];
+ 
+            max=Math.max(max,Math.max(leftsum,rightsum));
+            if(leftsum==0)//IF THE ELEMENT IS 0 SO TO CALCULATE NEXT ELEMENT WE WILL HAVE TO START FROM BEGINNING
+            leftsum=1;
+            if(rightsum==0)
+            rightsum=1;
+        }
+        return max;
+    }
+}
