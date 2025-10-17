@@ -1,0 +1,27 @@
+class Solution {
+    static int evenlyDivides(int n) {
+        return countDigitsRecursive(n,n);
+    }
+    private int countDigitsRecursive(int currentN, int originalN) {
+        // Base Case: If the number is 0, we have processed all digits.
+        if (currentN == 0) {
+            return 0;
+        }
+
+        // Isolate the last digit.
+        int digit = currentN % 10;
+
+        // Recursive call for the rest of the number (n without its last digit).
+        int countFromRest = countDigitsRecursive(currentN / 10, originalN);
+
+        // Check if the current digit is a valid divisor.
+        // It must not be 0, and it must divide the original number evenly.
+        if (digit != 0 && originalN % digit == 0) {
+            // If it's a valid divisor, add 1 to the count returned from the recursion.
+            return 1 + countFromRest;
+        } else {
+            // Otherwise, just return the count from the rest of the number.
+            return countFromRest;
+        }
+    }
+}
