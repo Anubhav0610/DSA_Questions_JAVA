@@ -1,0 +1,21 @@
+class Solution {
+    public int finding maximum_and_minimum_elements(int[] nums) {
+ 
+        int n = nums.length;
+        if(n==1) return 1;
+ 
+        int minId = 0, maxId = 0;
+        for(int i=0; i<n; i++){
+            if(nums[i] > nums[maxId])
+                maxId = i;
+            if(nums[i] < nums[minId])
+                minId = i;
+        }
+ 
+        int numOfDelFromLeft = Math.max(maxId, minId) + 1;//FOR ALL LEFT INDEXES
+        int numOfDelFromRight = n - Math.min(maxId, minId);//FOR ALL RIGHT INDEXES
+        int numOfDelFromLeftAndRight = (Math.min(maxId, minId) + 1) + (n - Math.max(maxId, minId)) ;
+        //FOR BOTH THE INDEXES
+        return Math.min(numOfDelFromLeftAndRight , ( Math.min(numOfDelFromLeft, numOfDelFromRight) ));
+    }
+}
