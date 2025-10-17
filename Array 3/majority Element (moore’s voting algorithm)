@@ -1,0 +1,23 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count=0;
+        int candidate =0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(count == 0)//IF THE COUNT IS STARTING FROM STARTING
+            {
+                candidate=nums[i];
+                count ++;
+            }
+            else if(candidate==nums[i])//IF THE ELEMENT APPEARS AGAIN
+            {
+                count++;
+            }
+            else //IF ANOTHER ELEMENT APPEARS
+            {
+                count --;
+            }
+        }
+        return candidate;
+    }
+}
