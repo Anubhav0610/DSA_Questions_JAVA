@@ -1,0 +1,13 @@
+class Solution {
+    public int getCount(Node head) {
+        // code here
+        int i=0;
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+            i++;
+        }
+        return i+1;
+    }
+}
