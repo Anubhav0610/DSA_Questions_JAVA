@@ -1,0 +1,13 @@
+class p
+{
+node searchNode(int val,Node head)
+{
+int i=0;
+int temp=head;
+while(temp.val!=val)
+{
+temp=temp.next;
+}
+return temp;
+}
+}
