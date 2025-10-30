@@ -1,0 +1,31 @@
+import java.util.*;
+class StockSpanner {
+    class edge {
+        int val;
+        int idx;
+        edge(int val, int idx) {
+            this.val = val;
+            this.idx = idx;
+        }
+    }
+    private int count;
+    private Stack<edge> s;
+    public StockSpanner() {
+        count = -1;             
+        s = new Stack<>();      
+    }
+    public int next(int price) {
+        count++;
+        while (!s.isEmpty() && s.peek().val <= price) {
+            s.pop();
+        }
+        int prevIdx;
+        if (s.isEmpty()) {
+            prevIdx = -1;
+        } else {
+            prevIdx = s.peek().idx;
+        }
+        s.push(new edge(price, count));
+        return count - prevIdx;
+    }
+}
