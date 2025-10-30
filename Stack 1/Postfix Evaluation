@@ -1,0 +1,32 @@
+import java.util.Stack;
+
+class Solution {
+    public int evaluatePostfix(String[] arr) {
+        Stack<Integer> st = new Stack<>();
+        for (String token : arr) {
+            if (Character.isDigit(token.charAt(0)) || (token.length() > 1 && token.charAt(0) == '-')) {
+                st.push(Integer.parseInt(token));
+            } else {
+                int op2 = st.pop();
+                int op1 = st.pop();
+                switch (token) {
+                    case "+": st.push(op1 + op2); break;
+                    case "-": st.push(op1 - op2); break;
+                    case "*": st.push(op1 * op2); break;
+                    case "/": st.push(floorDiv(op1, op2)); break;
+                    case "^": st.push((int)Math.pow(op1, op2)); break;
+                }
+            }
+        }
+        return st.pop();
+    }
+
+    private int floorDiv(int a, int b) {
+        if ((a < 0 && b > 0) || (a > 0 && b < 0)) {
+            if (a % b != 0) {
+                return (a / b) - 1;
+            }
+        }
+        return a / b;
+    }
+}
