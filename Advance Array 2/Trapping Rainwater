@@ -1,0 +1,39 @@
+class Solution {
+    public int trap(int[] height) {
+        int total=0;
+        int pre[]=new int[height.length];
+        int post[]=new int[height.length];
+        pre=leftmax(pre,height);
+        post=rightmax(post,height);
+        for(int i=0;i<height.length;i++)
+        {
+            if(height[i]<pre[i] && height[i] <post[i])
+            total+=Math.min(pre[i],post[i])-height[i];
+        }
+        return total;
+    }
+    int[] leftmax(int[] pre,int[] height)
+    {
+        pre[0]=height[0];
+        for(int i=1;i<height.length;i++)
+        {
+            if(height[i]>pre[i-1])
+            pre[i]=height[i];
+            else
+            pre[i]=pre[i-1];
+        }
+        return pre;
+    }
+    int[] rightmax(int[] pre,int[] height)
+    {
+        pre[height.length-1]=height[height.length-1];
+        for(int i=height.length-2;i>=0;i--)
+        {
+            if(height[i]>pre[i+1])
+            pre[i]=height[i];
+            else
+            pre[i]=pre[i+1];
+        }
+        return pre;
+    }
+}
