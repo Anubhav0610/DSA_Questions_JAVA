@@ -1,0 +1,34 @@
+import java.util.PriorityQueue;
+
+class Geeks {
+
+    // Function to insert element into the queue
+    static void insert(PriorityQueue<Integer> q, int k) {
+        q.offer(k);
+    }
+
+    // Function to find an element k
+    static boolean find(PriorityQueue<Integer> q, int k) {
+        return q.contains(k);
+    }
+
+    // Function to delete the max element from queue
+    static int delete(PriorityQueue<Integer> q) {
+        if (q.isEmpty()) {
+            return -1; // Or throw exception based on requirements
+        }
+
+        // Since PriorityQueue is a min-heap, manually find the max element
+        int max = Integer.MIN_VALUE;
+        for (int num : q) {
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        // Remove the max element
+        q.remove(max);
+
+        return max;
+    }
+}
